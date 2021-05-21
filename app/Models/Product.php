@@ -116,6 +116,31 @@ class Product extends Model
      * @param string image
      */
     public function saveImage($image){
-
+        return $image;
     }
+
+    /**
+     * lists products with a limit
+     * 
+     * @param int perPage
+     * @return Collection products
+     */
+    public function getProductsWithPagination($perPage = 25){
+        $products = (new Product)->with('categories');
+
+        if($perPage === 0){
+            return $products->get();
+        }
+
+        return $products->paginate($perPage);
+    }
+    // public function getProductsWithPagination($perPage = 25){
+    //     $products = (new Product)->with('categories');
+
+    //     if($perPage === 0){
+    //         return $products->get();
+    //     }
+
+    //     return $products->paginate($perPage);
+    // }
 }

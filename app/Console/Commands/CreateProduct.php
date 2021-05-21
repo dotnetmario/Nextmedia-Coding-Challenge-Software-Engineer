@@ -13,14 +13,14 @@ class CreateProduct extends Command
      *
      * @var string
      */
-    protected $signature = 'product:create {name} {price} {category} {description?} {image?}';
+    protected $signature = 'product:create {name} {price} {category} {description?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Creates a product record, the category is an integer. The description and image are optional';
+    protected $description = 'Creates a product record, the category is an integer. The description is optional';
 
     /**
      * Create a new command instance.
@@ -43,9 +43,9 @@ class CreateProduct extends Command
         $price = $this->argument('price');
         $category = $this->argument('category');
         $description = $this->argument('description');
-        $image = $this->argument('image');
+        // $image = $faker->image('public\storage', 640, 480);
 
-        $product = (new Product)->addProduct($category, $name, $price, $description, $image);
+        $product = (new Product)->addProduct($category, $name, $price, $description);
 
         if(isset($product))
             $this->info('The product was created successfully!');

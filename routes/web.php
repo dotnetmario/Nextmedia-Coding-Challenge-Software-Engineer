@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SinglePageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     // $prod = (new Product)->find(1);
+
+//     // dd($prod->getAttributes());
+
+//     return view('welcome');
+// });
+
+
+Route::get('/{any}', [SinglePageController::class, 'index'])->where('any', '.*');

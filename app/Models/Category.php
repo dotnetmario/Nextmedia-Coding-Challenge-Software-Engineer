@@ -89,4 +89,20 @@ class Category extends Model
          
         return null;
     }
+
+    /**
+     * lists categories with a limit
+     * 
+     * @param int perPage
+     * @return Collection categories
+     */
+    public function getCategoriesWithPagination($perPage = 25){
+        $categories = (new Category);
+
+        if($perPage === 0){
+            return $categories->get();
+        }
+
+        return $categories->paginate($perPage);
+    }
 }
